@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>User Profile - Renewed Hope</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+        --primary-green: #004d00;
+        --light-green: #e6f2e6;
+        --text-green: #002600;
+        --accent-green: #008000;
+    }
+    body {
+        font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+</style>
+</head>
+<body class="bg-white">
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+
+<!-- HEADER -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f4f0] px-10 py-4 bg-[var(--primary-green)] text-white">
+  <div class="flex items-center gap-4">
+    <h2 class="text-xl font-bold">Renewed Hope</h2>
+  </div>
+  <div class="flex flex-1 justify-end gap-8">
+    <nav class="flex items-center gap-9">
+      <a class="hover:text-gray-200" href="index.html">Home</a>
+      <a class="hover:text-gray-200" href="about.html">About Us</a>
+      <a class="hover:text-gray-200" href="property_listing.html">Properties</a>
+      <a class="hover:text-gray-200" href="map.html">Property Map</a>
+      <a class="hover:text-gray-200" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex gap-2">
+      <a href="login.html" class="rounded-md h-10 px-4 bg-white text-[var(--primary-green)] text-sm font-bold hover:bg-gray-200 flex items-center">Login</a>
+      <a href="register.html" class="rounded-md h-10 px-4 border border-white text-white text-sm font-bold hover:bg-white hover:text-[var(--primary-green)] flex items-center">Register</a>
+    </div>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="flex flex-1">
+  <!-- USER MENU -->
+  <aside class="w-80 bg-white border-r border-[#e5e7eb] flex flex-col items-center py-6">
+    <!-- Profile Image -->
+    <div class="flex flex-col items-center">
+      <img src="https://via.placeholder.com/96" alt="User Profile" class="h-24 w-24 rounded-full object-cover"/>
+      <h1 class="mt-4 text-[#111418] text-base font-medium">User Profile</h1>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="mt-6 w-full px-4 flex flex-col gap-2">
+      <a href="user.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Dashboard</span>
+      </a>
+      <a href="application.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Applications</span>
+      </a>
+      <a href="myproperties.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Properties</span>
+      </a>
+      <a href="payments.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Payments</span>
+      </a>
+      <a href="inspections.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Inspections</span>
+      </a>
+      <a href="profile.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Profile</span>
+      </a>
+      <a href="messages.html" class="flex items-center gap-3 px-3 py-2 hover:bg-[#f0f2f4] rounded-md">
+        <span class="text-sm font-medium text-[#111418]">Messages</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 p-6">
+    <h2 class="text-2xl font-bold text-[#111418]">Welcome to Your Profile</h2>
+    <p class="text-gray-600 mt-2">Here you can manage your account information, applications, and more.</p>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--primary-green)] text-white mt-6">
+  <div class="max-w-screen-xl mx-auto py-6 px-4 text-center">
+    <p>© 2025 Renewed Hope. All rights reserved.</p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

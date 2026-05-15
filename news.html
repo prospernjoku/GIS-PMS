@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <title>Renewed Hope - GIS-Based Property Management System</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-green: #065f46;
+      --light-green: #ecfdf5;
+      --text-green: #064e3b;
+      --accent-green: #10b981;
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+    #map { height: 500px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+<!-- HEADER -->
+<header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+  <div class="flex items-center gap-3">
+    <div class="p-2 bg-white/20 rounded-lg">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 48 48">
+        <path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"></path>
+      </svg>
+    </div>
+    <h2 class="text-2xl font-extrabold">Renewed Hope</h2>
+  </div>
+  <nav class="hidden md:flex gap-8">
+    <a class="hover:text-gray-200 transition" href="index.html">Home</a>
+    <a class="hover:text-gray-200 transition" href="about.html">About Us</a>
+    <a class="hover:text-gray-200 transition" href="property_listing.html">Properties</a>
+    <a class="hover:text-gray-200 transition" href="map.html">Property Map</a>
+    <a class="hover:text-gray-200 transition" href="contact.html">Contact</a>
+  </nav>
+  <div class="flex gap-3">
+    <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg shadow hover:bg-gray-200 transition">Login</a>
+    <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)] transition">Register</a>
+  </div>
+</header>
+<!-- Header -->
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#111811] tracking-light text-[32px] font-bold leading-tight min-w-72">News &amp; Updates</p></div>
+            <div class="flex gap-3 p-3 flex-wrap pr-4">
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f5f0] pl-4 pr-4">
+                <p class="text-[#111811] text-sm font-medium leading-normal">Ministry Announcements</p>
+              </div>
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f5f0] pl-4 pr-4">
+                <p class="text-[#111811] text-sm font-medium leading-normal">Policy Updates &amp; Press Releases</p>
+              </div>
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f5f0] pl-4 pr-4">
+                <p class="text-[#111811] text-sm font-medium leading-normal">Upcoming Housing Projects</p>
+              </div>
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f5f0] pl-4 pr-4">
+                <p class="text-[#111811] text-sm font-medium leading-normal">Success Stories</p>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBz--sdjtaXWgqvvQg3mo1SxcG_bMClLV9s-HQNYZRdellxeFH3tGHUCZFetO-fzwb0EdSn8nI5-RxzEGQ6SUxB0E8uFZ5FPLS7FZhSeMo8_JFiP1gxLMGxuEUh-pk5sRRD1kcrZgi9YvTHh_NzbZEHsJq4ejc1uW7sluw206NwIvcM2hdUU21G0EPv895zuq5NbhOOO0U4VCucbbp8ktS7LSdVLK4Ss5qN4TBsvWHyCzilkVF-kF9b4pRXuUXAcBpkedShGBKa0FWB");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-[#608a60] text-sm font-normal leading-normal">Ministry Announcements</p>
+                  <p class="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em]">New Initiatives to Boost Affordable Housing</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#608a60] text-base font-normal leading-normal">
+                      The Ministry of Housing and Urban Development announces a series of new initiatives aimed at increasing the availability of affordable housing options for
+                      citizens. These include partnerships with private developers, streamlined approval processes, and financial incentives for sustainable building practices.
+                    </p>
+                   <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#065f46] text-[#ffffff] text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZUuwlT7xzeN7143IJZwV6cOrNESVusIcouKb06WIVX08Vmc9s2ZfL6jhtgHFmxrj4aZ3UnhFi1Jn8tvnf9pllu31vhnQEGJwNgwssa502rPecMcLz7__DOkGSjUFuwxoCD03l3LK_Fz12e7qLhouj5v61zUqyV3paK9MCqOblyKUqM7WJkToWk4PLC7R-ANesgIfRzcpLPmCkbxPpetuUYNl_op3suo5a2Z2JjRL0fJHJ9PUdsBKoieJv0gU3_yxn5vWmMbEgDttl");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-[#608a60] text-sm font-normal leading-normal">Policy Updates &amp; Press Releases</p>
+                  <p class="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em]">Revised Regulations for Property Development</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#608a60] text-base font-normal leading-normal">
+                      The Ministry has released updated regulations for property development, focusing on environmental sustainability and urban planning. These changes aim to
+                      ensure responsible growth and enhance the quality of life in urban areas.
+                    </p>
+                   <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#065f46] text-[#ffffff] text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvJBxOiCf021upSHhK6SVBr3_vqwvnVQMDpnu6cYuMsHsYkRzjPu9uCHkbpnS3WRH-15oW6nYspRE1A4MS5BUbmUqzve5yuPbSjSKyyP8tTPbt41G5whRYayhuYntBzoQSRvsiyOuB-4ybdQYms-s4MEtUejIJKqZNJDtlDZL2F1I9tQmFf8R-45KcaSsSBrcUiUweJuVdvzymQi3kHWXSJiiP0huMULC3_aPYw8WuvZecSce0jpmTXr81jwJvwTtaqfrlS5GRM2T1");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-[#608a60] text-sm font-normal leading-normal">Upcoming Housing Projects</p>
+                  <p class="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em]">Green Valley Estate Project Launch</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#608a60] text-base font-normal leading-normal">
+                      The Ministry is excited to announce the launch of the Green Valley Estate project, a new housing development featuring eco-friendly designs and community
+                      amenities. Applications are now open for prospective homeowners.
+                    </p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#065f46] text-[#ffffff] text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcq4lIR9FoVMik11f36P0a6hQM11eZdnAQk9fl0FswIFN8BJseENYq7YKzVJHVU9LWqhEgQuKvdc0hI4q1fcSuSIZtsfPpN0WrJMWqtal8Mm9o8UX83weKhyyh1y9jlC2_zdozre8bSosoeMmILn9WDDFs2ynVlqlktLwrFp1kvXR82JjiSmjST-uz3PktsC1EmE1BnglJKWOe0FGNwhcVZhkSx0LGMh1mGVGmysmWlxvqezThQqDWsJv3TAHD-owaIuzycNITILJZ");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-[#608a60] text-sm font-normal leading-normal">Success Stories</p>
+                  <p class="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em]">Homeownership Dreams Realized Through Ministry Programs</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#608a60] text-base font-normal leading-normal">
+                      Meet Sarah and David, a young couple who achieved their dream of owning a home through the Ministry's affordable housing program. Their story highlights the
+                      positive impact of government initiatives on individual lives.
+                    </p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#065f46] text-[#ffffff] text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+  <div class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-4 gap-8">
+    <div><h2 class="text-xl font-bold">Renewed Hope</h2><p class="mt-2">Your gateway to property ownership in Nigeria.</p></div>
+    <div><h3 class="uppercase text-sm font-semibold">Navigation</h3><ul class="mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="property_listing.html">Properties</a></li><li><a href="map.html">Property Map</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Quick Links</h3><ul class="mt-3 space-y-2"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="news.html">News</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Contact</h3><ul class="mt-3 space-y-2 text-sm"><li>Federal Ministry of Housing, Abuja</li><li>contact@renewedhope.gov.ng</li><li>+234-123-456-7890</li></ul></div>
+  </div>
+  <div class="border-t border-gray-500 py-4 text-center text-sm">© 2025 Renewed Hope. All rights reserved.</div>
+</footer>
+
+</div>
+</body>
+</html>

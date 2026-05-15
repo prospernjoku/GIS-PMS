@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <title>Renewed Hope - GIS-Based Property Management System</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-green: #065f46;
+      --light-green: #ecfdf5;
+      --text-green: #064e3b;
+      --accent-green: #10b981;
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+    #map { height: 500px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+<!-- HEADER -->
+<header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+  <h2 class="text-2xl font-extrabold">Renewed Hope</h2>
+  <nav class="hidden md:flex gap-8">
+    <a class="hover:text-gray-200" href="index.html">Home</a>
+    <a class="hover:text-gray-200" href="about.html">About Us</a>
+    <a class="hover:text-gray-200" href="property_listing.html">Properties</a>
+    <a class="hover:text-gray-200" href="map.html">Property Map</a>
+    <a class="hover:text-gray-200" href="contact.html">Contact</a>
+  </nav>
+  <div class="flex gap-3">
+    <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg">Login</a>
+    <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)]">Register</a>
+  </div>
+</header>
+
+<!-- FEATURED PROPERTIES -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-center text-[var(--text-green)] mb-12">Featured Properties</h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Property Card -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-2 transition">
+        <img src="https://via.placeholder.com/400x250" class="w-full h-48 object-cover"/>
+        <div class="p-6">
+          <a href="property_detail.html" class="block text-xl font-bold text-[var(--text-green)] hover:underline">3-Bedroom Terrace Duplex</a>
+          <p class="text-gray-500 text-sm">Lagos</p>
+          <p class="mt-3 text-gray-700">Modern home in a serene estate.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-lg font-bold text-[var(--primary-green)]">₦45M</span>
+            <span class="px-3 py-1 bg-[var(--accent-green)] text-white rounded text-xs">For Sale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-2 transition">
+        <img src="https://via.placeholder.com/400x250" class="w-full h-48 object-cover"/>
+        <div class="p-6">
+          <a href="property_detail.html" class="block text-xl font-bold text-[var(--text-green)] hover:underline">2-Bedroom Apartment</a>
+          <p class="text-gray-500 text-sm">Abuja</p>
+          <p class="mt-3 text-gray-700">Affordable apartments with modern facilities.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-lg font-bold text-[var(--primary-green)]">₦25M</span>
+            <span class="px-3 py-1 bg-blue-600 text-white rounded text-xs">For Rent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-2 transition">
+        <img src="https://via.placeholder.com/400x250" class="w-full h-48 object-cover"/>
+        <div class="p-6">
+          <a href="property_detail.html" class="block text-xl font-bold text-[var(--text-green)] hover:underline">Luxury Villa</a>
+          <p class="text-gray-500 text-sm">Kaduna</p>
+          <p class="mt-3 text-gray-700">Spacious villa with private garden.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-lg font-bold text-[var(--primary-green)]">₦120M</span>
+            <span class="px-3 py-1 bg-red-600 text-white rounded text-xs">Sold</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-2 transition">
+        <img src="https://via.placeholder.com/400x250" class="w-full h-48 object-cover"/>
+        <div class="p-6">
+          <a href="property_detail.html" class="block text-xl font-bold text-[var(--text-green)] hover:underline">4-Bedroom Detached House</a>
+          <p class="text-gray-500 text-sm">Port Harcourt</p>
+          <p class="mt-3 text-gray-700">Beautiful detached home near city center.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-lg font-bold text-[var(--primary-green)]">₦85M</span>
+            <span class="px-3 py-1 bg-[var(--accent-green)] text-white rounded text-xs">Available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE GIS MAP -->
+<section class="py-20 bg-[var(--light-green)]">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-center text-[var(--text-green)] mb-8">Interactive Property Map</h2>
+
+    <!-- Search Filters -->
+    <form class="grid md:grid-cols-4 gap-4 mb-6">
+      <select class="p-3 rounded border-gray-300">
+        <option>State</option>
+        <option>Lagos</option>
+        <option>Abuja</option>
+        <option>Kaduna</option>
+      </select>
+      <select class="p-3 rounded border-gray-300">
+        <option>Type</option>
+        <option>Apartment</option>
+        <option>Duplex</option>
+        <option>Villa</option>
+      </select>
+      <select class="p-3 rounded border-gray-300">
+        <option>Price</option>
+        <option>&lt; ₦20M</option>
+        <option>₦20M - ₦50M</option>
+        <option>₦50M+</option>
+      </select>
+      <select class="p-3 rounded border-gray-300">
+        <option>Availability</option>
+        <option>For Sale</option>
+        <option>For Rent</option>
+        <option>Sold</option>
+      </select>
+    </form>
+
+    <!-- Map -->
+    <div id="map" class="rounded-lg shadow-lg"></div>
+  </div>
+</section>
+
+<script>
+  // Leaflet map
+  var map = L.map('map').setView([9.0820, 8.6753], 6);
+
+  // Base layers
+  var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  var satellite = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  L.control.layers({"Street": street, "Satellite": satellite}).addTo(map);
+
+  // Mock property markers
+  var properties = [
+    { name: "3-Bedroom Terrace Duplex", coords: [6.5244, 3.3792], state:"Lagos" },
+    { name: "2-Bedroom Apartment", coords: [9.0579, 7.4951], state:"Abuja" },
+    { name: "Luxury Villa", coords: [10.5222, 7.4383], state:"Kaduna" }
+  ];
+
+  properties.forEach(p => {
+    L.marker(p.coords).addTo(map).bindPopup("<b>"+p.name+"</b><br>"+p.state);
+  });
+</script>
+
+<!-- NEWS & UPDATES -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-center text-[var(--text-green)] mb-12">News & Updates</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 bg-[var(--light-green)] rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-[var(--primary-green)]">New Housing Policy Launched</h3>
+        <p class="mt-2 text-gray-700">The government introduces policies to ease home ownership for Nigerians.</p>
+        <a href="news.html" class="mt-3 inline-block text-[var(--accent-green)] font-semibold hover:underline">Read More</a>
+      </div>
+      <div class="p-6 bg-[var(--light-green)] rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-[var(--primary-green)]">Abuja Phase 2 Projects</h3>
+        <p class="mt-2 text-gray-700">Ongoing projects in Abuja to deliver 5,000 new housing units.</p>
+        <a href="news.html" class="mt-3 inline-block text-[var(--accent-green)] font-semibold hover:underline">Read More</a>
+      </div>
+      <div class="p-6 bg-[var(--light-green)] rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-[var(--primary-green)]">Affordable Mortgage Options</h3>
+        <p class="mt-2 text-gray-700">Banks roll out flexible mortgage plans under Renewed Hope scheme.</p>
+        <a href="news.html" class="mt-3 inline-block text-[var(--accent-green)] font-semibold hover:underline">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+  <div class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-4 gap-8">
+    <div><h2 class="text-xl font-bold">Renewed Hope</h2><p class="mt-2">Your gateway to property ownership in Nigeria.</p></div>
+    <div><h3 class="uppercase text-sm font-semibold">Navigation</h3><ul class="mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="property_listing.html">Properties</a></li><li><a href="map.html">Property Map</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Quick Links</h3><ul class="mt-3 space-y-2"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="news.html">News</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Contact</h3><ul class="mt-3 space-y-2 text-sm"><li>Federal Ministry of Housing, Abuja</li><li>contact@renewedhope.gov.ng</li><li>+234-123-456-7890</li></ul></div>
+  </div>
+  <div class="border-t border-gray-500 py-4 text-center text-sm">© 2025 Renewed Hope. All rights reserved.</div>
+</footer>
+
+</div>
+</body>
+</html>

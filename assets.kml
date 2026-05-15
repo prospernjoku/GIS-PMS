@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Renewed Hope - Housing Sites</name>
+<Folder><name>Karsana National Housing Phase 1 (Abuja)</name>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB1</name><Point><coordinates>7.33391514,9.12996512,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB2</name><Point><coordinates>7.33397486,9.12995177,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB3</name><Point><coordinates>7.33434006,9.12947391,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB4</name><Point><coordinates>7.33407650,9.12927494,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB5</name><Point><coordinates>7.33381549,9.12907795,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB6</name><Point><coordinates>7.33383831,9.12958630,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) - PB7</name><Point><coordinates>7.33346220,9.12962311,0</coordinates></Point></Placemark>
+<Placemark><name>Karsana National Housing Phase 1 (Abuja) Boundary</name><Style><LineStyle><color>ff00ff00</color><width>2</width></LineStyle><PolyStyle><color>4000ff00</color></PolyStyle></Style><Polygon><outerBoundaryIs><LinearRing><coordinates>7.33391514,9.12996512,0 7.33397486,9.12995177,0 7.33434006,9.12947391,0 7.33407650,9.12927494,0 7.33381549,9.12907795,0 7.33383831,9.12958630,0 7.33346220,9.12962311,0 7.33391514,9.12996512,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+</Folder>
+<Folder><name>Kaduna National Housing Phase 1</name>
+<Placemark><name>Kaduna National Housing Phase 1 - PB1</name><Point><coordinates>7.46897219,10.62820430,0</coordinates></Point></Placemark>
+<Placemark><name>Kaduna National Housing Phase 1 - PB2</name><Point><coordinates>7.46985921,10.62830352,0</coordinates></Point></Placemark>
+<Placemark><name>Kaduna National Housing Phase 1 - PB3</name><Point><coordinates>7.46979741,10.62786511,0</coordinates></Point></Placemark>
+<Placemark><name>Kaduna National Housing Phase 1 - PB4</name><Point><coordinates>7.46896320,10.62776232,0</coordinates></Point></Placemark>
+<Placemark><name>Kaduna National Housing Phase 1 Boundary</name><Style><LineStyle><color>ff00ff00</color><width>2</width></LineStyle><PolyStyle><color>4000ff00</color></PolyStyle></Style><Polygon><outerBoundaryIs><LinearRing><coordinates>7.46897219,10.62820430,0 7.46985921,10.62830352,0 7.46979741,10.62786511,0 7.46896320,10.62776232,0 7.46897219,10.62820430,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+</Folder>
+<Folder><name>Federal Govt. Site and Services, Satellite Town, Lagos</name>
+<Placemark><name>Federal Govt. Site and Services, Satellite Town, Lagos - PB1</name><Point><coordinates>3.27198450,6.44446785,0</coordinates></Point></Placemark>
+<Placemark><name>Federal Govt. Site and Services, Satellite Town, Lagos - PB2</name><Point><coordinates>3.27232876,6.44460116,0</coordinates></Point></Placemark>
+<Placemark><name>Federal Govt. Site and Services, Satellite Town, Lagos - PB3</name><Point><coordinates>3.27237780,6.44523466,0</coordinates></Point></Placemark>
+<Placemark><name>Federal Govt. Site and Services, Satellite Town, Lagos - PB4</name><Point><coordinates>3.27181714,6.44513888,0</coordinates></Point></Placemark>
+<Placemark><name>Federal Govt. Site and Services, Satellite Town, Lagos Boundary</name><Style><LineStyle><color>ff00ff00</color><width>2</width></LineStyle><PolyStyle><color>4000ff00</color></PolyStyle></Style><Polygon><outerBoundaryIs><LinearRing><coordinates>3.27198450,6.44446785,0 3.27232876,6.44460116,0 3.27237780,6.44523466,0 3.27181714,6.44513888,0 3.27198450,6.44446785,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+</Folder>
+</Document>
+</kml>

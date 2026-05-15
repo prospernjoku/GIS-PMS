@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <title>Renewed Hope - GIS-Based Property Management System</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-green: #065f46;
+      --light-green: #ecfdf5;
+      --text-green: #064e3b;
+      --accent-green: #10b981;
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+    #map { height: 500px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+<!-- HEADER -->
+<header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+  <div class="flex items-center gap-3">
+    <div class="p-2 bg-white/20 rounded-lg">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 48 48">
+        <path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"></path>
+      </svg>
+    </div>
+    <h2 class="text-2xl font-extrabold">Renewed Hope</h2>
+  </div>
+  <nav class="hidden md:flex gap-8">
+    <a class="hover:text-gray-200 transition" href="index.html">Home</a>
+    <a class="hover:text-gray-200 transition" href="about.html">About Us</a>
+    <a class="hover:text-gray-200 transition" href="property_listing.html">Properties</a>
+    <a class="hover:text-gray-200 transition" href="map.html">Property Map</a>
+    <a class="hover:text-gray-200 transition" href="contact.html">Contact</a>
+  </nav>
+  <div class="flex gap-3">
+    <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg shadow hover:bg-gray-200 transition">Login</a>
+    <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)] transition">Register</a>
+  </div>
+</header>
+<!-- Header -->
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-[#111811] tracking-light text-[32px] font-bold leading-tight">Property Comparison</p>
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Compare up to three properties side-by-side to make an informed decision.</p>
+              </div>
+            </div>
+            <div class="flex w-full grow bg-white @container py-3">
+              <div class="w-full gap-1 overflow-hidden bg-white @[480px]:gap-2 aspect-[3/2] grid grid-cols-[2fr_1fr_1fr]">
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none row-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3SzCy53pSMOTjErQ2fxLIKvasr2IlPjW1WWSq6RfQdECEaMssd91A7CrInQxGNCeUu5NIhYs-kp2UOgGVKoRAKx3_5lFJOZ3Q4X-fHTdg0I3wQGYgXAymFiMAt672Z7r82RUpgEPvtfRP37E6J2NtR3i0Qf0UNt1FBUvbOq9sqzcxZ2ualyfmXGsEXV_vnCodyuHw5ohZV01IWt5-JM8rC4AgqQaLfN64M-aMLSyqQguk0JGX6QZCNRPbRWA5dIjp7dcIwtCu9X8y");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none col-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCnJTWWy4UHY-80CncuKBreHaivtK5woXz-fJPz_q0tm8NBzEVMaMGYmgfn0CmEACgDL5rByktqTUzbiYhLSvPN4bOMVuawWgNGy90sUYgj3QFEdtAZxuPetuM_kzIUKdcKNIjqUSe0Rug80uKIKL2aUbomy6LwRUeFJ7uQRkJcNa-x3HF7a9sT65In_xcck6hx48NeoQ1xeN1FdH-p3pDIbjgP5MjcYMdQcyshAQsh3iOXJJg94F9kIC-YNLvHBSKd40dHwvqbtYWw");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none col-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7flG_qEB4nDKceLW3qv-6SEe6CelhgtxOWyaAI2xfBVLPqtL-ipR6FXZk_OMdfG1j2UytFaCOlMWU_NdIR9AL0XYPDHgv08mK2g1eptkUGSbAJhiD2lmclKwAsLkHYxCUyC0FBoQJjztU6WTqXu7KutxF7-rVGJFP_PfHbQTHPAVd2NZcaaG0wNpstYoVZgp1FzZ8VhwJwDQYV6pbblhnbP9xv5jJJGPMFPxElqtUyNYHcs-a7Qsds7ghaO0HYHrWtCqTR49rv8fM");'
+                ></div>
+              </div>
+            </div>
+            <div class="px-4 py-3 @container">
+              <div class="flex overflow-hidden rounded-xl border border-[#dbe6db] bg-white">
+                <table class="flex-1">
+                  <thead>
+                    <tr class="bg-white">
+                      <th class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 px-4 py-3 text-left text-[#111811] w-[400px] text-sm font-medium leading-normal">
+                        Attribute
+                      </th>
+                      <th class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 px-4 py-3 text-left text-[#111811] w-[400px] text-sm font-medium leading-normal">
+                        Property A
+                      </th>
+                      <th class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 px-4 py-3 text-left text-[#111811] w-[400px] text-sm font-medium leading-normal">
+                        Property B
+                      </th>
+                      <th class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 px-4 py-3 text-left text-[#111811] w-[400px] text-sm font-medium leading-normal">
+                        Property C
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">Overview</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Property Type
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">House</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">House</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">House</td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">Location</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Lagos, Nigeria
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Abuja, Nigeria
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Ibadan, Nigeria
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">Status</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Available
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Under Development
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Available
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Financial
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">Price</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">$250,000</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">$300,000</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">$200,000</td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Associated Fees
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        5% of price
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        4% of price
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        6% of price
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Payment Options
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Mortgage, Cash
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Installments, Cash
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">Cash</td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Size &amp; Dimensions
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Land Area
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">500 sq m</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">700 sq m</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">400 sq m</td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Floor Area
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        1500 sq ft
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        2000 sq ft
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        1200 sq ft
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Bedrooms/Bathrooms
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        3 beds, 2 baths
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        4 beds, 3 baths
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        2 beds, 2 baths
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">Features</td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal"></td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Key Amenities
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Garden, Parking
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Swimming Pool, Gym
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Balcony, Parking
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbe6db]">
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120 h-[72px] px-4 py-2 w-[400px] text-[#111811] text-sm font-normal leading-normal">
+                        Utilities
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Electricity, Water
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Electricity, Water
+                      </td>
+                      <td class="table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480 h-[72px] px-4 py-2 w-[400px] text-[#608a60] text-sm font-normal leading-normal">
+                        Electricity, Water
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <style>
+                          @container(max-width:120px){.table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-120{display: none;}}
+                @container(max-width:240px){.table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-240{display: none;}}
+                @container(max-width:360px){.table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-360{display: none;}}
+                @container(max-width:480px){.table-4e455a0f-6aff-4d1b-a148-8833a007af1e-column-480{display: none;}}
+              </style>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+  <div class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-4 gap-8">
+    <div><h2 class="text-xl font-bold">Renewed Hope</h2><p class="mt-2">Your gateway to property ownership in Nigeria.</p></div>
+    <div><h3 class="uppercase text-sm font-semibold">Navigation</h3><ul class="mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="property_listing.html">Properties</a></li><li><a href="map.html">Property Map</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Quick Links</h3><ul class="mt-3 space-y-2"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="news.html">News</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Contact</h3><ul class="mt-3 space-y-2 text-sm"><li>Federal Ministry of Housing, Abuja</li><li>contact@renewedhope.gov.ng</li><li>+234-123-456-7890</li></ul></div>
+  </div>
+  <div class="border-t border-gray-500 py-4 text-center text-sm">© 2025 Renewed Hope. All rights reserved.</div>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <title>User Roles - Renewed Hope</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-green: #065f46;
+      --light-green: #ecfdf5;
+      --text-green: #064e3b;
+      --accent-green: #10b981;
+      --primary-color: #47eb47;
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+    .active-link {
+      @apply text-[var(--primary-color)];
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="p-2 bg-white/20 rounded-lg">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 48 48">
+          <path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-extrabold">Renewed Hope</h2>
+    </div>
+    <nav class="hidden md:flex gap-8">
+      <a class="hover:text-gray-200 transition" href="index.html">Home</a>
+      <a class="hover:text-gray-200 transition" href="about.html">About Us</a>
+      <a class="hover:text-gray-200 transition" href="property_listing.html">Properties</a>
+      <a class="hover:text-gray-200 transition" href="map.html">Property Map</a>
+      <a class="hover:text-gray-200 transition" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex gap-3">
+      <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg shadow hover:bg-gray-200 transition">Login</a>
+      <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)] transition">Register</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 px-10 py-8">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">User Roles</h2>
+        <p class="mt-2 text-gray-600">An overview of user roles within the system and direct links to their respective dashboards.</p>
+      </div>
+      <div class="overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm">
+        <ul class="divide-y divide-gray-200">
+
+          <!-- User -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/user/dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">person</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">User</p>
+                  <p class="text-sm text-gray-500">Standard user access</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Housing & Planning -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/housing_plainning/dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">home_work</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">Housing & Planning Dept</p>
+                  <p class="text-sm text-gray-500">Manages property and planning data</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- ICT -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/ict/dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">computer</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">ICT</p>
+                  <p class="text-sm text-gray-500">Information & Communications Technology</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Finance -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/finance/finance_dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">account_balance_wallet</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">Finance Dept</p>
+                  <p class="text-sm text-gray-500">Handles financial records and transactions</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Executives -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/executives/executive_dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">groups</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">Executives</p>
+                  <p class="text-sm text-gray-500">High-level system overview</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Asset Management -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/asset_mgt/dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">villa</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">Asset Management</p>
+                  <p class="text-sm text-gray-500">Manages system assets and inventory</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- NEW: Cadastral Department -->
+          <li class="group">
+            <a class="flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" href="/cadastral/dashboard.html">
+              <div class="flex items-center gap-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 group-hover:bg-green-100">
+                  <span class="material-icons text-gray-500 group-hover:text-[var(--primary-color)]">map</span>
+                </div>
+                <div>
+                  <p class="text-base font-semibold text-gray-800">Cadastral Dept</p>
+                  <p class="text-sm text-gray-500">Land survey & cadastral mapping</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-600 group-hover:text-[var(--primary-color)]">Go to Dashboard</span>
+                <span class="material-icons text-gray-400 group-hover:text-[var(--primary-color)]">arrow_forward</span>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+    <div class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-4 gap-8">
+      <div><h2 class="text-xl font-bold">Renewed Hope</h2><p class="mt-2">Your gateway to property ownership in Nigeria.</p></div>
+      <div><h3 class="uppercase text-sm font-semibold">Navigation</h3><ul class="mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="property_listing.html">Properties</a></li><li><a href="map.html">Property Map</a></li></ul></div>
+      <div><h3 class="uppercase text-sm font-semibold">Quick Links</h3><ul class="mt-3 space-y-2"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="news.html">News</a></li></ul></div>
+      <div><h3 class="uppercase text-sm font-semibold">Contact</h3><ul class="mt-3 space-y-2 text-sm"><li>Federal Ministry of Housing, Abuja</li><li>contact@renewedhope.gov.ng</li><li>+234-123-456-7890</li></ul></div>
+    </div>
+    <div class="border-t border-gray-500 py-4 text-center text-sm">© 2025 Renewed Hope. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>

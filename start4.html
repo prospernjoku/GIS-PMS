@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Public+Sans%3Awght%40400%3B500%3B600%3B700%3B800%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>Renewed Hope - GIS Property Management</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-green: #008000;
+        --light-green: #f0fff0;
+        --dark-green: #006400;
+        --text-dark: #1a202c;
+        --text-light: #4a5568;
+      }
+      body {
+        font-family: 'Public Sans', sans-serif;
+      }
+      .btn-primary {
+        @apply bg-[var(--primary-green)] text-white hover:bg-[var(--dark-green)] transition-colors duration-300;
+      }
+      .btn-secondary {
+        @apply bg-gray-200 text-[var(--text-dark)] hover:bg-gray-300 transition-colors duration-300;
+      }
+    </style>
+</head>
+<body class="bg-white text-[var(--text-dark)]">
+<div class="relative min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-white shadow-md">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<svg class="h-8 w-8 text-[var(--primary-green)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+<h1 class="text-2xl font-extrabold text-[var(--dark-green)] tracking-tight">Renewed Hope</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-base font-semibold text-[var(--text-dark)] hover:text-[var(--primary-green)] transition-colors" href="#">Home</a>
+<a class="text-base font-semibold text-[var(--text-light)] hover:text-[var(--primary-green)] transition-colors" href="#">Properties</a>
+<a class="text-base font-semibold text-[var(--text-light)] hover:text-[var(--primary-green)] transition-colors" href="#">Map View</a>
+<a class="text-base font-semibold text-[var(--text-light)] hover:text-[var(--primary-green)] transition-colors" href="#">News</a>
+<a class="text-base font-semibold text-[var(--text-light)] hover:text-[var(--primary-green)] transition-colors" href="#">About</a>
+<a class="text-base font-semibold text-[var(--text-light)] hover:text-[var(--primary-green)] transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="btn-primary rounded-full px-6 py-2 text-sm font-bold shadow-lg">
+              Login/Register
+            </button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<section class="relative h-[600px] bg-cover bg-center flex items-center" style='background-image: linear-gradient(to right, rgba(0, 128, 0, 0.6), rgba(0, 0, 0, 0.2)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJDoCAUQjEXKJ5x3m99QhFC99vjk8vTbWID1CJWbiHE1eZ9Hv6lK9hYcw3cUrT8x7V3jVJy74HvBcfHd8wob_WA8Ht24fsEsVvw5wfxB45ogOoKFso3NeihFL-St9WXDwLH3JITkJB1aygn0I6WxJgFQOG1jL4JlXH4W4XzPPNni1iBf6rjrcrWltXEUj7hTzuI0o2A-qN1Opfnli2bRUaL2Gb3UWzRT11Qi5yDXaa-1jDztNkoSh0YzXzzoVVB_ooJkiZwobQ49B2");'>
+<div class="container mx-auto px-6 text-white text-left">
+<h2 class="text-5xl font-extrabold leading-tight mb-4">Find Your Dream Home in Nigeria</h2>
+<p class="text-lg mb-8 max-w-2xl">A new era of affordable and accessible housing for every Nigerian, powered by the Renewed Hope agenda.</p>
+<div class="flex gap-4">
+<button class="btn-primary rounded-full px-8 py-3 font-bold text-lg shadow-xl">View Properties</button>
+<button class="bg-white text-[var(--primary-green)] rounded-full px-8 py-3 font-bold text-lg shadow-xl hover:bg-gray-100 transition-colors">Apply Now</button>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="container mx-auto px-6">
+<div class="bg-[var(--light-green)] p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/2">
+<h3 class="text-3xl font-bold text-[var(--dark-green)] mb-4">Quick Property Search</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<select class="w-full p-4 rounded-lg border-gray-300 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)] text-lg">
+<option>Select State</option>
+</select>
+<select class="w-full p-4 rounded-lg border-gray-300 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)] text-lg">
+<option>Property Type</option>
+</select>
+</div>
+<div>
+<label class="block text-lg font-medium text-[var(--text-dark)] mb-2" for="price-range">Price Range (₦)</label>
+<input class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--primary-green)]" id="price-range" max="10000000" min="100000" type="range"/>
+<div class="flex justify-between text-sm text-[var(--text-light)] mt-1">
+<span>100k</span>
+<span>10M+</span>
+</div>
+</div>
+<select class="w-full p-4 rounded-lg border-gray-300 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)] text-lg">
+<option>Availability</option>
+</select>
+<button class="btn-primary w-full rounded-lg py-4 font-bold text-xl shadow-md" type="submit">Search</button>
+</form>
+</div>
+<div class="md:w-1/2">
+<div class="w-full h-96 bg-cover bg-center rounded-2xl shadow-md" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdZuynsWcTkyLzsLZeQeoWWcg3JvlO9tXQwVFSInvtkkb298bu2Aur44E2JFVuo-VWOBVLQUpCvi3w_T58-mGotNDNGxHhR7TuIvgcVBf-I5eFFfScuYynRIpGUagQNGd4gPPzLOLJEKVXy1CxeNk7Qx5YEKpuj-aTIPeO9SET1f_kAG51KJ41I3Cqv6hu_iLwX0JMWvamfoWthlaKAqGcXC2pEu-w72ZY39gPXVLu3M2AnFbXxwFPxdwHCXp5TXjSjeWCFlQ2fhDH");'></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-extrabold text-[var(--dark-green)]">Featured Properties</h2>
+<p class="text-lg text-[var(--text-light)] mt-2">Explore some of our premium properties across Nigeria.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<div class="h-56 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyrgeLp1UG_6wbd09yL0DhZJA7qRYD9_khcWH6QmUU2WfLMlIohMDCxN5bwKOTaUCulK9sotVaVbE5Y3Ie-wxUsvx3HIScld7VbNYcF9ZD_TI4S-D9pt1OAqjEpMc1TBSuvStxVKyneU2_dYd7312WTNnftD1RA8oeCnWVhXBLNNIMririf4v2JEY0ROzrH5hV9BqDLhv4wnvbBnbE7HadZ913U1sD9FEEmCevcV0JMn1fxh7jaGgOAGo1VER72aPgVfZvTi6JJGCz");'></div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Luxury Villa in Abuja</h3>
+<p class="text-[var(--text-light)] mb-4">Price: ₦50,000,000</p>
+<span class="inline-block bg-green-100 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">Available</span>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<div class="h-56 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdtOksLTcFtqTxJ1-RY4ZYXTpC0YmCUtGorXXyh5hbos7MxNxT3co2nC34DRMuykU5k2DrfrNwJAK9a2pz4mw2nQPHi8laI68IZsFa2lzRU23CBkHMp6I0G2urdYyUPZFixaoZ2J4PO_Ns-tO0BevLlfbS4--gr0mh2FETiAOp6WmeghYPCLHPbNlQ2aEjlqy7mUMfBUpw2DLIYINlJHNLNa5ezNw-aHdgdI_jUEXYr_Z6i58jy9koMgmgtFxDZt1uOK-KQNZmR_Nq");'></div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Modern Apartments in Lagos</h3>
+<p class="text-[var(--text-light)] mb-4">Price: ₦25,000,000</p>
+<span class="inline-block bg-green-100 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">Available</span>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<div class="h-56 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXjg9Tdbn8Z5yuTJ9-HV6Rrdw60qYGTdPc4VUDWIbRe-EYrxpQZA-bOJ5PXRj4aQ_rS2IHb7WU783GMZeFe6DqwYE1kyKC9XdDue0vpgFeOi-M2GntpedBtb8QDTzdm_y3tuXYyijNqJlKGVWxzKEGz5Pr6uED3GbZuwDA1-CJAJ4ppB9cajs9EtBhPzz4ZkFK7LiKfZtXQUy6jklICfql1FyqOrMZOpn8KSGumJ95HHdAgUrSZu-YjK_vjrjVD6s1CraO3X0_TLy6");'></div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Family Homes in Port Harcourt</h3>
+<p class="text-[var(--text-light)] mb-4">Price: ₦35,000,000</p>
+<span class="inline-block bg-yellow-100 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">Under Construction</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-[var(--light-green)]">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-2/3">
+<h3 class="text-3xl font-bold text-[var(--dark-green)] mb-3">Minister's Update</h3>
+<h4 class="text-xl font-semibold mb-4">A Vision for National Housing</h4>
+<p class="text-[var(--text-light)] text-lg mb-6">
+                  Arc. Ahmed Musa Dangiwa, our esteemed Minister of Housing and Urban Development, shares his comprehensive vision for ensuring every Nigerian has access to affordable and quality housing. His strategic initiatives are set to revolutionize the housing sector, fostering sustainable urban development and improving the quality of life for citizens across the nation.
+                </p>
+<button class="btn-secondary rounded-full px-6 py-2 font-semibold">Read More</button>
+</div>
+<div class="md:w-1/3 flex justify-center">
+<img alt="Minister of Housing" class="rounded-2xl shadow-xl w-full h-auto object-cover max-w-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeKc9K_igSXg1Uei6escQ0YBLwodigYp7LIXr76OTl61SfL0JSE4j-M2rPm0psTRk1NgHcmUcpc3GGOA7Ewav_6vWbtac3vZQrsGa9aJtZehBwfLk9OBCxK0ZFS1GIpXCGszuvksZrXVo8OE2tYTwQ2zmsfMtbhWUfeEKqijJ_l840A07E4fDusuS_ZJdnxOxnUBjLopB4x11SG3TsBo5nIqg1Z8ikglLdNJrCUVS12zjOYSNeT5cSKYp1_XF8ruDr8F9hS1Ta9wrv"/>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-12 text-center md:text-left">
+<img alt="Arc. Ahmed Musa Dangiwa" class="w-48 h-48 rounded-full shadow-2xl object-cover border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCUd1CW86oAJfsuciOjpk2p2U90FjcIjc97On_uuEZmSoWJUPT5a3NZaLkAA2dRPecUtAIJqSl_Al6d2UV2ov8bjB8Y3k1_eDi6gb41BWxboZ0hBCTtI2WyD5L_mTfrPdzM6D8lkmhSN2AY1sirwB28ZugnyL31yFYhbezRZ6G1Lf0_3Zz4IIaiLlUjK2k1sOvfCd6xfUIpYMtC2BONpoYdOYJ2dyixwSus6ve6lm_IFp59Dd4aqOb7-XMXqFatTRgApmA2SBYs39b"/>
+<div>
+<h3 class="text-3xl font-bold">Meet the Minister</h3>
+<p class="text-2xl font-semibold text-[var(--dark-green)] mt-1">Arc. Ahmed Musa Dangiwa</p>
+<p class="text-lg text-[var(--text-light)]">Minister of Housing and Urban Development</p>
+<blockquote class="mt-4 text-xl italic text-[var(--text-dark)] max-w-2xl">
+                "Our commitment is to provide quality, affordable housing for all Nigerians. Together, we build a nation of homeowners."
+              </blockquote>
+</div>
+</div>
+</section>
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-extrabold text-[var(--dark-green)]">Project Statistics</h2>
+<p class="text-lg text-[var(--text-light)] mt-2">Tracking our progress towards a brighter housing future.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+<div class="bg-white p-8 rounded-2xl shadow-lg">
+<p class="text-5xl font-extrabold text-[var(--primary-green)]">1,250</p>
+<p class="text-lg font-semibold text-[var(--text-light)] mt-2">Properties Available</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg">
+<p class="text-5xl font-extrabold text-[var(--primary-green)]">350</p>
+<p class="text-lg font-semibold text-[var(--text-light)] mt-2">Properties Sold</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg">
+<p class="text-5xl font-extrabold text-[var(--primary-green)]">500</p>
+<p class="text-lg font-semibold text-[var(--text-light)] mt-2">Under Construction</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg">
+<p class="text-5xl font-extrabold text-[var(--primary-green)]">₦150B</p>
+<p class="text-lg font-semibold text-[var(--text-light)] mt-2">Total Investment</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-extrabold text-[var(--dark-green)]">News &amp; Updates</h2>
+<p class="text-lg text-[var(--text-light)] mt-2">Stay informed about the latest housing policies and project launches.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="h-64 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDU8xDuig2WtHa5Jv5n9v7U32I0hyOSMwSGB8vTSvPwxR71kxbg-5UmrVL2TwLuqwPvdElAGZqtCgsAz_AH5Yc5tz0-PYVnd9huED5BQgSDOLabdrmCViA1qhgsgbZUVUOM6Fbo06xdG8_N0F28vQmGY-Y5Pz7jWMPjYUZloli_ozzy7m3y23mwJEI0jl9swqzSewvKxqSbJhzjdHIAKkaKXdhPxzRa1-Di6kujBVrXtbkNwpFzi_1LKAlCXh67W-9gHMn1DmWl_hz1");'></div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">New Housing Policy Announced</h3>
+<p class="text-[var(--text-light)] mb-4">The Federal Government launches a new initiative to support first-time homebuyers.</p>
+<a class="font-semibold text-[var(--primary-green)] hover:underline" href="#">Read More →</a>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="h-64 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6Aqf2f8ZsTYk55DmVHZS9pk3ZCXm4qCCzkx1WP0-Pdttd-dd7uQwUycsX4haNmwyLDVinFTyrYMxTEcwTr4OAFYsDSx5GT-UZsMhKo3Qfd7oUoXaeMrMHZ9xtG9wt0dCyViSkkbKiCv_9sWImrYJBuPfwYpC3tLlXn7rfHFippB-Wb2vqyifkEuTFVVcbFUOmHxijPYhAkdEWIXO-c7RmNFt2uoaRcztsVYBoRByn88p2HAoe-HpcCH3f0P8m6IF3YEWVP3A2whEA");'></div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Project Launch in Kano</h3>
+<p class="text-[var(--text-light)] mb-4">Construction begins on a new affordable housing project in Kano State, creating jobs and homes.</p>
+<a class="font-semibold text-[var(--primary-green)] hover:underline" href="#">Read More →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GIS Asset Map - Renewed Hope</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Omnivore (for KML) -->
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+
+  <style>
+    #map {
+      height: 80vh;
+      width: 100%;
+    }
+    :root {
+      --primary-green: #065f46;  /* Consistent Emerald Green */
+      --light-green: #ecfdf5;    /* Mint background */
+      --text-green: #064e3b;
+      --accent-green: #10b981;   /* Vibrant accent */
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="p-2 bg-white/20 rounded-lg">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 48 48">
+          <path d="M24 0.757L47.243 24 24 47.243 0.757 24 24 0.757ZM21 35.757V12.243L9.243 24 21 35.757Z"></path>
+        </svg>
+      </div>
+      <h2 class="text-xl md:text-2xl font-extrabold">Renewed Hope</h2>
+    </div>
+    <nav class="hidden md:flex gap-8">
+      <a class="hover:text-gray-200 transition" href="index.html">Home</a>
+      <a class="hover:text-gray-200 transition" href="about.html">About Us</a>
+      <a class="hover:text-gray-200 transition" href="property_listing.html">Properties</a>
+      <a class="hover:text-gray-200 transition" href="map.html">Property Map</a>
+      <a class="hover:text-gray-200 transition" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex gap-3">
+      <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg shadow hover:bg-gray-200 transition">Login</a>
+      <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)] transition">Register</a>
+    </div>
+  </header>
+
+  <!-- Content with Sidebar -->
+  <div class="flex flex-1">
+    <!-- Sidebar: Asset Links -->
+    <aside class="w-72 bg-[var(--light-green)] p-4 border-r">
+      <h2 class="text-lg font-bold mb-4 text-[var(--text-green)]">Assets</h2>
+      <ul class="space-y-3">
+        <li>
+          <button onclick="zoomToAsset('karsana')" class="w-full text-left bg-[var(--primary-green)] text-white px-4 py-2 rounded hover:bg-[var(--accent-green)] transition">
+            Karsana National Housing Phase 1, Abuja
+          </button>
+        </li>
+        <li>
+          <button onclick="zoomToAsset('kaduna')" class="w-full text-left bg-[var(--primary-green)] text-white px-4 py-2 rounded hover:bg-[var(--accent-green)] transition">
+            Kaduna National Housing Phase 1
+          </button>
+        </li>
+        <li>
+          <button onclick="zoomToAsset('lagos')" class="w-full text-left bg-[var(--primary-green)] text-white px-4 py-2 rounded hover:bg-[var(--accent-green)] transition">
+            Federal Govt Site, Satellite Town, Lagos
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Map -->
+    <main class="flex-1">
+      <div id="map"></div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+    <div class="max-w-6xl mx-auto py-12 px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        
+        <!-- Brand -->
+        <div>
+          <h2 class="text-xl font-bold">Renewed Hope</h2>
+          <p class="mt-2 text-gray-200">Your gateway to property ownership in Nigeria.</p>
+        </div>
+        
+        <!-- Navigation -->
+        <div>
+          <h3 class="uppercase text-sm font-semibold text-gray-200">Navigation</h3>
+          <ul class="mt-3 space-y-2">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li><a href="property_listing.html" class="hover:text-white">Properties</a></li>
+            <li><a href="map.html" class="hover:text-white">Property Map</a></li>
+          </ul>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="uppercase text-sm font-semibold text-gray-200">Quick Links</h3>
+          <ul class="mt-3 space-y-2">
+            <li><a href="about.html" class="hover:text-white">About Us</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+            <li><a href="news.html" class="hover:text-white">News</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="uppercase text-sm font-semibold text-gray-200">Contact</h3>
+          <ul class="mt-3 space-y-2 text-gray-300">
+            <li>Federal Ministry of Housing and Urban Development, Abuja</li>
+            <li>contact@renewedhope.gov.ng</li>
+            <li>+234-123-456-7890</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-gray-300 text-sm">
+        © 2025 Renewed Hope. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Map
+    const map = L.map('map').setView([9.0820, 8.6753], 6);
+
+    // Base layers
+    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const satellite = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      { attribution: '© Esri, Maxar, Earthstar Geographics' }
+    );
+
+    // Layer control (Map/Satellite toggle)
+    const baseMaps = { "Map": osm, "Satellite": satellite };
+    L.control.layers(baseMaps).addTo(map);
+
+    // Load KML file
+    const kmlLayer = omnivore.kml('assets.kml')
+      .on('ready', function() { map.fitBounds(kmlLayer.getBounds()); })
+      .on('error', function(err) { console.error("KML load error:", err); })
+      .addTo(map);
+
+    // Predefined Asset Coordinates
+    const assets = {
+      karsana: { coords: [9.0992, 7.4225], zoom: 15 },
+      kaduna: { coords: [10.5230, 7.4403], zoom: 15 },
+      lagos: { coords: [6.4649, 3.3958], zoom: 15 }
+    };
+
+    // Zoom to asset
+    function zoomToAsset(assetKey) {
+      const asset = assets[assetKey];
+      if (asset) { map.setView(asset.coords, asset.zoom); }
+    }
+
+    // Add markers for assets
+    Object.keys(assets).forEach(key => {
+      const asset = assets[key];
+      L.marker(asset.coords).addTo(map).bindPopup(`<b>${key.toUpperCase()}</b>`);
+    });
+  </script>
+</body>
+</html>

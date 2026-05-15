@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <title>Renewed Hope - GIS-Based Property Management System</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-green: #065f46;
+      --light-green: #ecfdf5;
+      --text-green: #064e3b;
+      --accent-green: #10b981;
+    }
+    body {
+      font-family: "Public Sans", "Noto Sans", sans-serif;
+    }
+    #map { height: 500px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+<!-- HEADER -->
+<header class="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white shadow-lg">
+  <div class="flex items-center gap-3">
+    <div class="p-2 bg-white/20 rounded-lg">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 48 48">
+        <path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"></path>
+      </svg>
+    </div>
+    <h2 class="text-2xl font-extrabold">Renewed Hope</h2>
+  </div>
+  <nav class="hidden md:flex gap-8">
+    <a class="hover:text-gray-200 transition" href="index.html">Home</a>
+    <a class="hover:text-gray-200 transition" href="about.html">About Us</a>
+    <a class="hover:text-gray-200 transition" href="property_listing.html">Properties</a>
+    <a class="hover:text-gray-200 transition" href="map.html">Property Map</a>
+    <a class="hover:text-gray-200 transition" href="contact.html">Contact</a>
+  </nav>
+  <div class="flex gap-3">
+    <a href="login.html" class="px-5 py-2 bg-white text-[var(--primary-green)] font-bold rounded-lg shadow hover:bg-gray-200 transition">Login</a>
+    <a href="register.html" class="px-5 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[var(--primary-green)] transition">Register</a>
+  </div>
+</header>
+<!-- Header -->
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap gap-2 p-4">
+              <a class="text-[#608a60] text-base font-medium leading-normal" href="#">Nigeria</a>
+              <span class="text-[#608a60] text-base font-medium leading-normal">/</span>
+              <a class="text-[#608a60] text-base font-medium leading-normal" href="#">Lagos</a>
+              <span class="text-[#608a60] text-base font-medium leading-normal">/</span>
+              <span class="text-[#111811] text-base font-medium leading-normal">Ikoyi</span>
+            </div>
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-[#111811] tracking-light text-[32px] font-bold leading-tight">Luxury 3-Bedroom Apartment in Ikoyi</p>
+                <p class="text-[#608a60] text-sm font-normal leading-normal">12 Glover Road, Ikoyi, Lagos</p>
+              </div>
+            </div>
+            <div class="flex w-full grow bg-white @container p-4">
+              <div class="w-full gap-1 overflow-hidden bg-white @[480px]:gap-2 aspect-[3/2] rounded-xl grid grid-cols-[2fr_1fr_1fr]">
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none row-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBAOGnAzbRj2yBRe04-PKc3JPLJYRG2YIyTGQVLm0KM-vOpTwR4r_51UX6-enLowmNFOpe6WQld9l2FV0mQrtW8xjKyHBfwKw2zydlGRYsqqjCkbFTHE1WI-uyagchkH8J68rcvrbCd6fgpJamvSj7xVN6hzUqfaf0egSFPm87xmyN5cVy7WgXANg9dIHFDuqc3TxPNI8DrFI_H_TwG1_ZvtQaMiGsM4WYhoDMY8zzyOjVnf1P6F9FKamLEjcCw-sbTqyq5FkGTik62");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none col-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTs85eMPghBSlVpNybtMFGOwxlvmHx0LjqtPR-jf-otnNdz5e2ESJjtpDzcFq99zh-dgPlQPHTx74fWeXK0OdRCQiXbTIarpFXXQpefYFmTDpymT7uzXeCw7937xtT_VruyX5AbQQ5UDcG49OZVJzHAr8YZcWDjRDzj5KRQh-1IiFfgU6TgJFwlWhCQSd08lpdcvOaV-fNYTg5jTteLjItGspdFYBEPio_wj0R7vEZzE48VLyPbnI1oMDAnRNDliXFyFjR9PVaWcw6");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPktNAnwcpO8UfWtytQ-qR_w8z5ofHOEc0x5iUa_TY29CxhtXNVKlZ8gpRG94KnWakCvjh6XgKYrGP0b2irMcuCn8xdf5KWmIejlgVOcCD9OX_0tHCZLnsSM8e3eMPuo7hW0MrJ0dSqyow9MN2KSxcof3_JwxfXJXfJpxLQtXM7YokiJ4t_SFr9X4krmFGcA_yBQy8mmSfx3vgKa9MLd0Wh69r08zF1BmApNH1lviLuRi4zbk-ZaYqzyBlCXq9Ydsj3UdXb6Xm2kNY");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoUZzlUrYsWZDPdilrVuy3omMd3-2IlQBd1htjMNeE-wZmOsp6NCnDySnzjSib4Bgf3cE7xePxRpTSou0cOwo4xHHExghEroPV94MnqndxaCTM-ugOhWx9pTHy0wBVuqBRKYsxrgBGpZdSYefyny_RkstlLS1ObFsIlZZueoY1em3fPpbiBVvvTTJN1wR2dKz9Y4g7aZ3lAl4FW7v5kD3yavCmA_jkRXNpCu-yBZjCImKYauUSXNAvBug6VsEbMyEafbYYVyKdXI0o");'
+                ></div>
+              </div>
+            </div>
+            <h2 class="text-[#111811] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Property Overview</h2>
+            <p class="text-[#111811] text-base font-normal leading-normal pb-3 pt-1 px-4">
+              This stunning 3-bedroom apartment in the heart of Ikoyi offers unparalleled luxury and comfort. Boasting spacious living areas, a modern kitchen, and breathtaking
+              city views, it's the perfect urban retreat. Enjoy access to premium amenities including a fitness center, swimming pool, and 24-hour security. Located near top
+              schools, shopping centers, and fine dining, this property combines convenience with elegance.
+            </p>
+            <h2 class="text-[#111811] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Pricing Information</h2>
+            <div class="p-4 grid grid-cols-[20%_1fr] gap-x-6">
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Purchase Price</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">₦105,500,000</p>
+              </div>
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Rental Fee</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">₦1,500,000/month</p>
+              </div>
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Associated Costs</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">HOA fees: ₦50000/month</p>
+              </div>
+            </div>
+            <h2 class="text-[#111811] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Features</h2>
+            <div class="p-4 grid grid-cols-[20%_1fr] gap-x-6">
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Bedrooms</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">4</p>
+              </div>
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Bathrooms</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">3</p>
+              </div>
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Size</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">2,500 sq ft</p>
+              </div>
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbe6db] py-5">
+                <p class="text-[#608a60] text-sm font-normal leading-normal">Utilities</p>
+                <p class="text-[#111811] text-sm font-normal leading-normal">Electricity, Water, Internet</p>
+              </div>
+            </div>
+            <h2 class="text-[#111811] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Location</h2>
+            <div class="flex px-4 py-3">
+              <div
+                class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl object-cover"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKjed-FkpND3EO8ZwyulxVlSTZI_ty8pH6tFm1Xfw9ffcfSQq1xylEmHl2rnQyHbRHZdEuPrHmqO1IAPBA-SjdQfMJjZFGOhaKC6FbEx8JiheSDdqrIMZtBKp5CBSzFM5yLDy8NKvQ5oDeKbm4PsfssawzdjM3wo_zZertOhkJgXhWcleRMhAUZ3bYmMTjnZC_ChKPjMMvSm2-xeLZyAqIqTG1OpcpEkv6YFOu1Gxfwos6qq47SLVihEXnblyJ6eOwjVblUKwxa9P1");'
+              ></div>
+            </div>
+            <p class="text-[#111811] text-base font-normal leading-normal pb-3 pt-1 px-4">
+              Located in the prestigious Ikoyi neighborhood, this property is surrounded by essential amenities. Within a 2-mile radius, you'll find top-rated schools, world-class
+              hospitals, bustling markets, and convenient transport links. The area is well-connected with tarred roads, ensuring easy access to other parts of Lagos.
+            </p>
+            <div class="flex px-4 py-3 justify-end">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#065f46] text-[#ffffff] text-base font-bold leading-normal tracking-[0.015em]"
+              >
+               <a href="apply.html" class="truncate">
+  <span>Apply Now</span>
+</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] text-white">
+  <div class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-4 gap-8">
+    <div><h2 class="text-xl font-bold">Renewed Hope</h2><p class="mt-2">Your gateway to property ownership in Nigeria.</p></div>
+    <div><h3 class="uppercase text-sm font-semibold">Navigation</h3><ul class="mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="property_listing.html">Properties</a></li><li><a href="map.html">Property Map</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Quick Links</h3><ul class="mt-3 space-y-2"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="news.html">News</a></li></ul></div>
+    <div><h3 class="uppercase text-sm font-semibold">Contact</h3><ul class="mt-3 space-y-2 text-sm"><li>Federal Ministry of Housing, Abuja</li><li>contact@renewedhope.gov.ng</li><li>+234-123-456-7890</li></ul></div>
+  </div>
+  <div class="border-t border-gray-500 py-4 text-center text-sm">© 2025 Renewed Hope. All rights reserved.</div>
+</footer>
+
+</div>
+</body>
+</html>
