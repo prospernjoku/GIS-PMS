@@ -1,0 +1,1 @@
+GIS Enabled Property Management System Demo being built for the Nigerian Federal Ministry of Urban & Housing. It is a complete GIS Powered ERP for the entire Ministry and data would be housed and managed internally. It takes Nigerian Data Protection Commission in to its build.
